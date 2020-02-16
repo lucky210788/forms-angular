@@ -1,0 +1,23 @@
+<div class="container">
+  <nav class="navbar navbar-dark">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link text-uppercase"
+           routerLinkActive="active"
+           routerLink="/"
+           [routerLinkActiveOptions]="{exact: true}">
+          template driven form
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-uppercase"
+           routerLinkActive="active"
+           routerLink="/reactive-form">
+          reactive form
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
