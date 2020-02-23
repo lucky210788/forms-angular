@@ -1,16 +1,30 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {ReactiveFormComponent} from './containers/reactive-form/reactive-form.component';
-import {TemplateDrivenFormComponent} from './containers/template-driven-form/template-driven-form.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {PageNotFoundComponent} from './containers/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
-  {path: '', component: TemplateDrivenFormComponent},
-  {path: 'reactive-form', component: ReactiveFormComponent}
+  {
+    path: '',
+    loadChildren: () =>
+      import('./containers/template-driven-form/template-driven-form.module').then(
+        m => m.TemplateDrivenFormModule
+      )
+  },
+  {
+    path: 'reactive-form',
+    loadChildren: () =>
+      import('./containers/reactive-form/reactive-form.module').then(
+        m => m.ReactiveFormModule
+      )
+  },
+  {path: '', redirectTo: '', pathMatch: 'full'},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
